@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Str;
 use Pablo\Whatsappsimplemessage\app\Broadcasting\Message\WhatsappMessage;
 use Pablo\Whatsappsimplemessage\app\Broadcasting\WhatsappChannel;
+use Pablo\Whatsappsimplemessage\app\Exceptions\RouteNotificationForWhatsappNotFound;
 
 class SimpleMessageNotification extends Notification
 {
@@ -34,7 +35,10 @@ class SimpleMessageNotification extends Notification
 
     public function toWhatsapp($notifiable)
     {
-        return json_encode($this->formatMessageToService($notifiable->routeNotificationFor('whatsapp'), $this->message));
+        if (!method_exists($notifiable, 'routeNotificationForWhatsapp')) {
+            throw new RouteNotificationForWhatsappNotFound('The method routeNotificationForWhatsapp was not found in the model');
+        }
+        return $this->formatMessageToService($notifiable->routeNotificationFor('whatsapp'), $this->message);
     }
 
     /**
@@ -46,7 +50,7 @@ class SimpleMessageNotification extends Notification
     {
         return [
             'phone' => $this->formatPhoneNumber($phone),
-            'message' => (new WhatsappMessage())->content($message),
+            'message' => (new WhatsappMessage())->content($message)->content,
         ];
     }
 

@@ -9,10 +9,7 @@ class WhatsappChannel
 {
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toWhatsapp($notifiable);
-        if (!method_exists($notifiable, 'routeNotificationForWhatsapp')) {
-            throw new RouteNotificationForWhatsappNotFound('The method routeNotificationForWhatsapp was not found in the model');
-        }
+        $message = json_encode($notification->toWhatsapp($notifiable));
         if (config('whatsapp.enabled')) {
             $this->performSending($message);
         }

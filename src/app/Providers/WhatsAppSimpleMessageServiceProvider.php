@@ -18,4 +18,11 @@ class WhatsAppSimpleMessageServiceProvider extends ServiceProvider
             'whatsapp-config'
         );
     }
+
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/../../config/whatsapp.php' => config_path('whatsapp.php'),
+        ], 'whatsapp-config');
+    }
 }
