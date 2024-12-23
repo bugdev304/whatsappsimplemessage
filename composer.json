@@ -1,0 +1,23 @@
+{
+  "name": "pablo/whatsappsimplemessage",
+  "description": "Pacote para envio de mensagem simples pelo Whatsapp utilizando a plataforma Z-API",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Pablo\\Whatsappsimplemessage\\": "src/"
+    }
+  },
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "Pablo",
+      "email": "pablomiranda304@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.4",
+    "laravel/framework": "^8.0"
+  },
+  "prefer-stable": true
+}
