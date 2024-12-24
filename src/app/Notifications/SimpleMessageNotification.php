@@ -60,9 +60,9 @@ class SimpleMessageNotification extends Notification
      */
     private function formatPhoneNumber(string $phone): string
     {
-        $phone = env('APP_ENV') !== 'production' ? config('services.zapi.default_number') : $phone;
-        if (!Str::startsWith($phone, config('default_country_ddi'))) {
-            $phone = config('default_country_ddi') . $phone;
+        $phone = env('APP_ENV') !== 'production' ? config('whatsapp.default_number') : $phone;
+        if (!Str::startsWith($phone, config('whatsapp.default_country_ddi'))) {
+            $phone = config('whatsapp.default_country_ddi') . $phone;
         }
         return $phone;
     }
