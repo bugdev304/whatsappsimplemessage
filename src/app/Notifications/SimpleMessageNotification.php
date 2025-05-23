@@ -3,13 +3,14 @@
 namespace Pablo\Whatsappsimplemessage\app\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Str;
 use Pablo\Whatsappsimplemessage\app\Broadcasting\Message\WhatsappMessage;
 use Pablo\Whatsappsimplemessage\app\Broadcasting\WhatsappChannel;
 use Pablo\Whatsappsimplemessage\app\Exceptions\RouteNotificationForWhatsappNotFound;
 
-class SimpleMessageNotification extends Notification
+class SimpleMessageNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
